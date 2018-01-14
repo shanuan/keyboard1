@@ -26,7 +26,7 @@ echo ^<script src="https://littleflute.github.io/vc6/XdHtml/blclass.js" ^>^</scr
 echo ^<script^>  >>index.html
 
 echo function _blPlayerClass(){																>>index.html
-echo    var ui = blo0.blDiv(document.body,"id_div_ui","ui::","brown");					>>index.html
+echo    var ui = blo0.blDiv(document.body,"id_div_ui","ui::v0.2.1","brown");				>>index.html
 echo    ui.b = blo0.blBtn(ui,ui.id+"b","b",blColor[1]); 									>>index.html
 echo    ui.d0 = blo0.blDiv(ui,ui.id+"d0","d0",blColor[0]); 									>>index.html
 echo    ui.b.onclick = function(_div){return function(){_on_off_div(this,_div);}}(ui.d0);	>>index.html
@@ -36,6 +36,7 @@ echo	blo0.blLink(ui.d0,ui.d0.id+"prj","____prj____","https://github.com/shanuan/
 echo	blo0.blLink(ui.d0,ui.d0.id+"edit","__index.html*__","https://github.com/shanuan/keyboard1/edit/master/index.html","lightblue");					>>index.html
 echo	blo0.blLink(ui.d0,ui.d0.id+"mp4i","__mp4i.bat__","mp4i.bat","lightblue");					>>index.html
 echo	blo0.blLink(ui.d0,ui.d0.id+"mp4iedit","__mp4i.bat*__","https://github.com/shanuan/keyboard1/edit/master/mp4i.bat","lightblue");					>>index.html
+echo	blo0.blLink(ui.d0,ui.d0.id+"player","player.html","player.html","lightblue");					>>index.html
 
 echo    ui.d1 = blo0.blDiv(ui,ui.id+"d1","d1",blColor[3]); 									>>index.html
 echo    ui.d2 = blo0.blDiv(ui,ui.id+"d2","d2",blColor[4]);									>>index.html

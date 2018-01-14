@@ -1,76 +1,81 @@
-rem v1.2.4
-
+rem v1.2.45
 del index.html
  
-echo ^<!DOCTYPE html^>	>>index.html  
-echo ^<html^> >>index.html 
-echo ^<body^> >>index.html
-echo %1 >>index.html
-echo ^<br^> >>index.html
-echo ^<div id="DivCurTime"^>^</div^> >>index.html
-echo ^<br^> >>index.html
-echo ^<button onclick="getCurTime()" type="button"^>Get current time position^</button^> >>index.html 
+echo ^<!DOCTYPE html^>^<html^>												>>index.html 
+echo ^<head^>																>>index.html 
+echo ^<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"^>		>>index.html 
 
-echo ^<button onclick="setCurTime(0)" type="button"^>00^</button^>^<br^> >>index.html  
+echo ^<title^>index														>>index.html 
+echo ^</title^>																>>index.html 
+echo ^</head^>																>>index.html 
+echo ^<body^> >>index.html 
 
-echo ^<button onclick="moveMS(-0.05)" type="button"^>Time-50ms^</button^>  >>index.html
-echo ^<button onclick="moveMS(-0.01)" type="button"^>-10ms^</button^>  >>index.html
-echo ^<button onclick="moveMS(0.01)" type="button"^>+10ms^</button^>  >>index.html
-echo ^<button onclick="moveMS(0.05)" type="button"^>+50ms^</button^>  >>index.html
-echo ^<button onclick="setCurTime(5)" type="button"^>Set time position to 5 seconds^</button^>^<br^>   >>index.html
- 
+echo ^<div id = "id_div_mp4_files" ^>										>>index.html
+
 setlocal ENABLEDELAYEDEXPANSION
 call set /a x = 0
-for /F "delims="  %%a in ('dir /b *.mp4') do (
-	rem echo %%a >>index.html
-	if !x! == 10 (
-		echo ^<br^> >>index.html
-	)
-	if !x! == 20 (
-		echo ^<br^> >>index.html
-	)
-	if !x! == 30 (
-		echo ^<br^> >>index.html
-	)
-	if !x! == 40 (
-		echo ^<br^> >>index.html
-	)
+for /F "delims="  %%a in ('dir /b *.mp4') do (	
 	call set /a x = !x! + 1
-	echo ^<button id = "btn!x!" onclick="play('%%a')"^>!x!:%%a^</button^> >>index.html
+	echo !x!:%%a,															>>index.html
 )
-
-
 @echo off  
-echo ^<br^> >>index.html
-echo ^<video id="myVideo" width="720" height="480" controls^> >>index.html
-echo  ^<source src="0.mp4" type="video/mp4"^>  >>index.html
-echo Your browser does not support HTML5 video. >>index.html
-echo ^</video^>  >>index.html
-echo ^<script^>  >>index.html
-echo var vid = document.getElementById("myVideo"); >>index.html
+echo ^</div^>																>>index.html
 
-echo function play(i) {>>index.html
-    
-echo     vid.src=i; >>index.html
-echo     vid.load();>>index.html
-echo     vid.play(); >>index.html
-echo }>>index.html
+echo ^<script src="https://littleflute.github.io/vc6/XdHtml/blclass.js" ^>^</script^>	>>index.html
  
+echo ^<script^>  >>index.html
 
-echo function getCurTime() {  >>index.html
-echo    document.getElementById("DivCurTime").innerHTML= vid.currentTime; >>index.html
-echo }   >>index.html
-echo function setCurTime(t) {>>index.html 
-echo    vid.currentTime=t;  >>index.html
-echo    getCurTime();>>index.html
-echo }  >>index.html
-echo function moveMS(ms) {>>index.html 
-echo   vid.currentTime+=ms;>>index.html
-echo   getCurTime();  >>index.html
-echo }   >>index.html
+echo function _blPlayerClass(){																>>index.html
+echo    var ui = blo0.blDiv(document.body,"id_div_ui","ui::","brown");					>>index.html
+echo    ui.b = blo0.blBtn(ui,ui.id+"b","b",blColor[1]); 									>>index.html
+echo    ui.d0 = blo0.blDiv(ui,ui.id+"d0","d0",blColor[0]); 									>>index.html
+echo    ui.b.onclick = function(_div){return function(){_on_off_div(this,_div);}}(ui.d0);	>>index.html
+echo    ui.b.click(); ui.b.click(); 														>>index.html
 
-echo var btn1 =  document.getElementById("btn1");	>>index.html
-echo btn1.click(); 	>>index.html
+echo	blo0.blLink(ui.d0,ui.d0.id+"prj","____prj____","https://github.com/shanuan/keyboard1","gray");													>>index.html
+echo	blo0.blLink(ui.d0,ui.d0.id+"edit","__index.html*__","https://github.com/shanuan/keyboard1/edit/master/index.html","lightblue");					>>index.html
+echo	blo0.blLink(ui.d0,ui.d0.id+"mp4i","__mp4i.bat__","mp4i.bat","lightblue");					>>index.html
+echo	blo0.blLink(ui.d0,ui.d0.id+"mp4iedit","__mp4i.bat*__","https://github.com/shanuan/keyboard1/edit/master/mp4i.bat","lightblue");					>>index.html
+
+echo    ui.d1 = blo0.blDiv(ui,ui.id+"d1","d1",blColor[3]); 									>>index.html
+echo    ui.d2 = blo0.blDiv(ui,ui.id+"d2","d2",blColor[4]);									>>index.html
+echo    var s = '^<video id="id_video_player" width="720" height="480"^>';					>>index.html
+echo    s += '^<source src=';																				>>index.html
+echo    s += QueryString.f?QueryString.f:"VID_20171124_113722.mp4";											>>index.html
+echo    s += ' type="video/mp4"^>';																			>>index.html
+echo    s += 'Your browser does not support HTML5 video. ^</video^>'; 										>>index.html
+
+echo    this.blr_1 = function(b,d){																			>>index.html
+echo      if(^^!b.n) {																						>>index.html
+echo    	b.n = 1;																						>>index.html
+echo    	b.isPlaying = 0;																				>>index.html
+echo    	oPlayer = document.getElementById("id_video_player"); 											>>index.html
+echo    	b.style.width = "100%";											>>index.html
+echo    	b.style.height = "50px";											>>index.html
+echo    	b.style.backgroundColor = "green";											>>index.html
+echo    	b.style.fontSize = "24px";											>>index.html
+echo    	b.innerHTML = '^<i class="fa fa-play"^>^</i^>';											>>index.html
+echo    	oPlayer.style.width = "100%";											>>index.html
+echo      }											>>index.html
+echo      else{											>>index.html
+echo        if(b.isPlaying==1){											>>index.html
+echo            oPlayer.pause();											>>index.html
+echo    		b.isPlaying = 0;											>>index.html
+echo    		b.innerHTML = '^<i class="fa fa-play"^>^</i^>';											>>index.html
+echo    	}											>>index.html
+echo        else{ 											>>index.html
+echo            oPlayer.play();											>>index.html
+echo            b.isPlaying = 1;											>>index.html
+echo            b.innerHTML = '^<i class="fa fa-pause"^>^</i^>';											>>index.html
+echo        }											>>index.html
+echo    }											>>index.html
+echo  }											>>index.html
+echo  ui.d2.innerHTML = s; 																			>>index.html
+echo  blo0.blShowObj2Div(ui.d1,this);																>>index.html
+echo  var btn = bl$("blr_1");	if(^^!btn.n){btn.click();} 											>>index.html
+
+echo }																						>>index.html
+echo var p = new _blPlayerClass; 															>>index.html
 
 echo ^</script^> >>index.html
 echo ^</body^> >>index.html

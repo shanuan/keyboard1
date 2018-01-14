@@ -2,6 +2,7 @@
 <html>  
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <title>player</title>
 </head>
 <body> 
@@ -11,7 +12,7 @@
 
 function _blPlayerClass(){ 
 	var oPlayer = null;
-	var ui = blo0.blDiv(document.body,"id_div_player_ui","blPlayer_v0.1.151",blColor[1]);
+	var ui = blo0.blDiv(document.body,"id_div_player_ui","blPlayer_v0.1.213",blColor[1]);
 	ui.style.width = "100%"; 
 	ui.b = blo0.blBtn(ui,ui.id+"b","b",blColor[1]); 
 	ui.d0 = blo0.blDiv(ui,ui.id+"d0","d0",blColor[5]); 
@@ -27,7 +28,7 @@ function _blPlayerClass(){
 	blo0.blLink(ui.d0,ui.d0.id+"l2","MajorChord","?f=VID_20180113_113718.mp4",blColor[2]);
 	ui.d1 = blo0.blDiv(ui,ui.id+"d1","d1",blColor[5]); 
 	ui.d2 = blo0.blDiv(ui,ui.id+"d2","d2",blColor[4]);
-	var s = '<video id="id_video_player" width="720" height="480" controls>';
+	var s = '<video id="id_video_player" width="720" height="480">';
 	s += '<source src=';
 	s += QueryString.f?QueryString.f:"VID_20171124_113722.mp4";
 	s += ' type="video/mp4">';
@@ -38,19 +39,24 @@ function _blPlayerClass(){
 			b.n = 1;
 			b.isPlaying = 0;
 			oPlayer = document.getElementById("id_video_player"); 
-			b.style.width = "50%";
+			b.style.width = "100%";
 			b.style.height = "50px";
 			b.style.backgroundColor = "green";
+			b.style.fontSize = "24px";
+			b.innerHTML = '<i class="fa fa-play"></i>';
+
 			oPlayer.style.width = "100%";
 		}
 		else{
 			if(b.isPlaying==1){
 				oPlayer.pause();
 				b.isPlaying = 0;
+				b.innerHTML = '<i class="fa fa-play"></i>';
 			}
 			else{ 
 				oPlayer.play();
 				b.isPlaying = 1;
+				b.innerHTML = '<i class="fa fa-pause"></i>';
 			}
 		}
 	}

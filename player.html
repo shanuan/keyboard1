@@ -6,24 +6,39 @@
 <script>  
 
 function _blPlayerClass(){ 
-	var ui = blo0.blMDiv(document.body,"id_mdiv_player_ui","blPlayer_v0.1.21",11,11,720,400,blColor[1]);
+	var ui = blo0.blMDiv(document.body,"id_mdiv_player_ui","blPlayer_v0.1.53",11,11,720,400,blColor[1]);
+	ui.style.width = "100%"; 
+
 	ui.d0 = blo0.blDiv(ui,ui.id+"d0","d0",blColor[5]); 
+	blo0.blLink(ui.d0,ui.d0.id+"prj","____prj____","https://github.com/shanuan/keyboard1","gray");
+	blo0.blLink(ui.d0,ui.d0.id+"empty","[  ________  ]","?",blColor[0]);
 	blo0.blLink(ui.d0,ui.d0.id+"l1","TongNian","?f=VID_20171124_113722.mp4",blColor[1]);
 	blo0.blLink(ui.d0,ui.d0.id+"l2","MajorChord","?f=VID_20180113_113718.mp4",blColor[2]);
 	ui.d1 = blo0.blDiv(ui,ui.id+"d1","d1",blColor[5]); 
 	ui.d2 = blo0.blDiv(ui,ui.id+"d2","d2",blColor[4]);
 	var s = '<video id="id_video_player" width="720" height="480" controls>';
-	s += '<source src="VID_20171124_113722.mp4" type="video/mp4">';
+	s += '<source src=';
+	s += QueryString.f?QueryString.f:"VID_20171124_113722.mp4";
+	s += ' type="video/mp4">';
 	s += 'Your browser does not support HTML5 video. </video>'; 
 
 	this.blr_1 = function(b,d){
-		var oPlayer = document.getElementById("id_video_player"); 
-		oPlayer.src = QueryString.f?QueryString.f:"VID_20171124_113722.mp4"; 
-		oPlayer.load();
-		oPlayer.play();
+		if(!btn.n) {
+			btn.n = 1;
+			b.style.height = "50px";
+			b.style.backgroundColor = "green";
+		}
+		else{
+			var oPlayer = document.getElementById("id_video_player"); 
+			oPlayer.src = QueryString.f?QueryString.f:"VID_20171124_113722.mp4"; 
+			oPlayer.load();
+			oPlayer.play();
+		}
 	}
 	ui.d2.innerHTML = s; 
 	blo0.blShowObj2Div(ui.d1,this);
+	var btn = bl$("blr_1");
+	if(!btn.n){btn.click();}
 }
 var p = new _blPlayerClass; 	
 </script> 

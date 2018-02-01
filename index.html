@@ -1,4 +1,3 @@
-
 <!DOCTYPE html><html>												 
 <head>																 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">		 
@@ -6,18 +5,48 @@
 </title>																 
 </head>																 
 <body>  
-<div id = "id_div_mp4_files" >										
+<div id = "id_div_mp4_files" style="display:none;" >										
 1:VID_20171124_113722.mp4,															
-2:VID_20180113_113718.mp4,															
+2:VID_20171207_192134.mp4,															
+3:VID_20180113_113718.mp4,															
+4:VID_20180114_142501.mp4,															
+5:VID_20180115_111839.mp4,															
+6:VID_20180115_112922.mp4,															
+7:VID_20180131_2.mp4,															
 </div>																
+<div><video id="id_video_player" width="720" height="480" type="video/mp4">							
+Your browser does not support HTML5 video. </video></div> 									
 <script src="https://littleflute.github.io/vc6/XdHtml/blclass.js" ></script>	
 <script>  
-function _blPlayerClass(){																
-   var ui = blo0.blDiv(document.body,"id_div_ui","ui::v0.2.1","brown");				
+function _blMp4ListClass( oDiv ){									
+   var d = blo0.blMDiv( oDiv , oDiv.id + "_mp4_list","list ::v0.0. 42 ",50,110,500,400,"gold");	 
+   d.list = blo0.blDiv( d , d.id + "_list","",50,110,500,400,"gold");	 
+   var a = bl$("id_div_mp4_files").innerHTML;	
+   var b = a.split(",");		
+   var l = [];  
+   for(i in b)	
+   {    
+     var c = b[i].split(":");		
+     if(undefined==c[1]) break;		
+     var s = "<a href = '";	
+     s += "?f=";	
+     s +=  c[1];	
+     s += "'>No.         ." + i + "</a>";		
+     l.push(s);    
+     blo0.blShowObj2Div(d.list, l );								 
+   }	
+   return d;											 
+}													
+function _blPlayerClass(){													
+   var ui 	= blo0.blDiv(document.body,"id_div_ui","ui::v0.2. 113 ","brown");				
    ui.b = blo0.blBtn(ui,ui.id+"b","b",blColor[1]); 									
+   ui.b1 = blo0.blBtn(ui,ui.id+"b1","b1",blColor[1]); 									
    ui.d0 = blo0.blDiv(ui,ui.id+"d0","d0",blColor[0]); 									
+   ui.list = _blMp4ListClass(ui);				
    ui.b.onclick = function(_div){return function(){_on_off_div(this,_div);}}(ui.d0);	
    ui.b.click(); ui.b.click(); 														
+   ui.b1.onclick = function(_div){ _on_off_div(this,ui.list);} 		
+   ui.b1.click(); ui.b1.click(); 														
 blo0.blLink(ui.d0,ui.d0.id+"prj","____prj____","https://github.com/shanuan/keyboard1","gray");													
 blo0.blLink(ui.d0,ui.d0.id+"edit","__index.html*__","https://github.com/shanuan/keyboard1/edit/master/index.html","lightblue");					
 blo0.blLink(ui.d0,ui.d0.id+"mp4i","__mp4i.bat__","mp4i.bat","lightblue");					
@@ -25,11 +54,8 @@ blo0.blLink(ui.d0,ui.d0.id+"mp4iedit","__mp4i.bat*__","https://github.com/shanua
 blo0.blLink(ui.d0,ui.d0.id+"player","player.html","player.html","lightblue");					
    ui.d1 = blo0.blDiv(ui,ui.id+"d1","d1",blColor[3]); 									
    ui.d2 = blo0.blDiv(ui,ui.id+"d2","d2",blColor[4]);									
-   var s = '<video id="id_video_player" width="720" height="480">';					
-   s += '<source src=';																				
-   s += QueryString.f?QueryString.f:"VID_20171124_113722.mp4";											
-   s += ' type="video/mp4">';																			
-   s += 'Your browser does not support HTML5 video. </video>'; 										
+   var v = bl$("id_video_player");										
+   v.src = QueryString.f?QueryString.f:"VID_20171124_113722.mp4";						 
    this.blr_1 = function(b,d){																			
      if(!b.n) {																						
    	b.n = 1;																						
@@ -55,7 +81,6 @@ blo0.blLink(ui.d0,ui.d0.id+"player","player.html","player.html","lightblue");
        }											
    }											
  }											
- ui.d2.innerHTML = s; 																			
  blo0.blShowObj2Div(ui.d1,this);																
  var btn = bl$("blr_1");	if(!btn.n){btn.click();} 											
 }																						
